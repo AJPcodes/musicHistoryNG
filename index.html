@@ -11,89 +11,23 @@
 <body>
 <div ng-app="MusicHistoryApp">
 
+
+
 	<div class="container-fluid" id="mainContent">
 
 		<div class="row">
 
 		  <nav class="navbar navbar-default">
 			  	<ul class="nav navbar-nav">
-				    <li role="presentation"><a href="#" class="selected" id="mainLink">View Music</a></li>
-				    <li role="presentation"><a href="#" id="addLink">Add Music</a></li>
+				    <li role="presentation"><a href="#/songs/list" class="selected" id="mainLink">View Music</a></li>
+				    <li role="presentation"><a href="#/songs/new" id="addLink">Add Music</a></li>
 						<li role="presentation"><a href="#">Profile</a></li>
 					</ul>
 			</nav>
 		</div>
 
+		<div ng-view></div>
 
-		<div class="row" id="mainView">
-
-		  <div class="selector col-sm-3" ng-controller="FilterCtrl as filter">
-
-	      <label for="artist">Artist:</label>
-	      <input id='artistInput' list="artist_list" name="artist"  value="All" class="form-control">
-		    <datalist id="artist_list" >
-					<option  ng-repeat="song in songs  | unique: 'artist'" value="{{song.artist}}">
-		    </datalist>
-
-	      <label for="album">Album:</label>
-	      <input id='albumInput' list="album_list" name="album" value="All" class="form-control">
-		    <datalist id="album_list">
-					<option  ng-repeat="song in songs | unique: 'album'" value="{{song.album}}">
-		    </datalist>
-
-	      <label for="genre">Genre:</label>
-	      <div class="checkboxes row" id="genres">
-		      <div class="checkbox col-xs-12" ng-repeat="song in songs | unique: 'genre'">
-						<input id="{{song.genre}}" type="checkbox" name="{{song.genre}}" value="{{song.genre}}" checked="true" />
-						<label for="{{song.genre}}">{{song.genre}}</label>
-					</div>
-     	 	</div>
-
-	      <button class="btn btn-default" id="filterSongs">Filter</button>
-			</div>
-
-		  <div class="history col-sm-9">
-
-		    <div class="wrapper" id="addSongsHere" ng-repeat="(key, value) in songs">
-		    	<div class="song" value="{{value.title}}">
-						<h3>{{ value.title }}</h3>
-					 	<p>{{ value.artist }} on {{ value.album }} - {{ value.genre }} </p>
-					 	<button class="btn btn-default edit" id="edit#{{ key }}">Edit</button>
-					 	<button class="btn btn-default remove" id="remove#{{ key }}">Remove</button>
-					</div>
-		  	</div>
-
-			</div>
-		</div>
-
-
-		<div class="row" id="addNewSongs">
-	  	<div class="addNew col-sm-12">
-				<form action="GET">
-
-					<h3>Add New Songs to the Library</h3>
-
-					<!-- //title -->
-					<label for="song_title">Song Title</label>
-      		<input id="song_title" type="text" name="song_name" placeholder="Song Title" />
-
-					<!-- //artist -->
-					<label for="artist">Artist</label>
-      		<input id="artist" type="text" name="artist" placeholder="Artist" />
-
-
-					<!-- //album -->
-					<label for="album">Album</label>
-      		<input id="album" type="text" name="album" placeholder="Album" />
-
-					<!-- //genre -->
-					<label for="genre">Genre</label>
-      		<input id="genre" type="text" name="genre" placeholder="Genre" />
-
-					<button id='add-song'>Add Song</button>
-				</form>
-			</div>
-		</div>
 
 	</div>
 
@@ -134,6 +68,8 @@
 	<script src="lib/bower_components/angularfire/dist/angularfire.min.js"></script>
 	<!-- Angular Filter -->
 	<script src="lib/bower_components/angular-filter/dist/angular-filter.min.js"></script>
+	<!-- Angular Route -->
+	<script src="lib/bower_components/angular-route/angular-route.min.js"></script>
 	<script src="app/main.js"></script>
 </body>
 </html>

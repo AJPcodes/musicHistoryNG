@@ -1,0 +1,34 @@
+<div class="row" id="addNewSongs">
+	<div class="addNew col-sm-12">
+		<form action="GET">
+
+			<h3>Add New Songs to the Library</h3>
+
+			<!-- //title -->
+			<label for="song_title">Song Title</label>
+  		<input id="song_title" type="text" name="song_name" placeholder="Song Title" ng-model="newSongTitle"/>
+
+			<!-- //artist -->
+			<label for="artist">Artist</label>
+  		<input id="artist" type="text" name="artist" placeholder="Artist" ng-model="newSongArtist"/>
+
+
+			<!-- //album -->
+			<label for="album">Album</label>
+  		<input id="album" type="text" name="album" placeholder="Album" ng-model="newSongAlbum"/>
+
+			<!-- //genre -->
+			<label for="genre">Genre</label>
+  		<input id="genre" type="text" name="genre" placeholder="Genre" ng-model="newSongGenre" />
+
+			<button type='button' id='add-song' ng-click="addNew()">Add Song</button>
+
+			<div class="song" value="{{newSongTitle}}">
+				<p>Title: {{ newSongTitle }}</p>
+			 	<p>Artist: {{ newSongArtist }}</p>
+			 	<p>Album: {{ newSongAlbum }}</p>
+			 	<p>Genre: {{ newSongGenre }} </p>
+			</div>
+		</form>
+	</div>
+</div>

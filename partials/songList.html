@@ -1,0 +1,59 @@
+<div class="row" id="mainView">
+
+	<div class="selector col-sm-3">
+
+	  <label for="artist">Artist:</label>
+	  <input id='artistInput' list="artist_list" name="artist"  value="All" class="form-control" ng-model="query.artist">
+	  <datalist id="artist_list" >
+	  	<option value=""></option>
+			<option  ng-repeat="song in songsArray  | unique: 'artist'" value="{{song.artist}}">
+	  </datalist>
+
+	  <label for="album">Album:</label>
+	  <input id='albumInput' list="album_list" name="album" value="All" class="form-control" ng-model="query.album">
+	  <datalist id="album_list">
+	  	<option value=""></option>
+			<option  ng-repeat="song in songsArray | unique: 'album'" value="{{song.album}}">
+	  </datalist>
+
+	  <label for="genre">Genre:</label>
+	  <div class="checkboxes row" id="genres">
+	    <div class="checkbox col-xs-12" ng-repeat="song in songsArray | unique: 'genre'">
+				<input type="checkbox" ng-model="query.genre" value="{{song.genre}}"  />
+				<label for="{{song.genre}}">{{song.genre}}</label>
+			</div>
+		 	</div>
+
+	  <button class="btn btn-default" id="filterSongs">Filter</button>
+
+	</div>
+
+	<div class="history col-sm-9">
+		<div>
+			<label for="searchQuery">Search by:  Song Title - Artist - Album - Genre </label>
+		  <input id="searchQuery" type="text" ng-model="query.$" />
+		</div>
+
+		<div class="wrapper" id="addSongsHere" ng-repeat="song in songsArray | filter: query">
+			<div class="song" value="{{song.title}}">
+				<h3>{{ song.title }}</h3>
+			 	<p>{{ song.artist }} on {{ song.album }} - {{ song.genre }} </p>
+			 	<button class="btn btn-default edit" id="edit#{{song.key}}">Edit</button>
+			 	<button class="btn btn-default remove" id="remove#{{song.key}}">Remove</button>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+

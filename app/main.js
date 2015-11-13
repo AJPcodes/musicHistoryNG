@@ -67,14 +67,12 @@ app.controller('showSongsCtrl',['$scope','$rootScope', 'songBase', function($sco
 	$scope.songsObject = songBase.getSongsObject();
 	$scope.songsArray = songBase.getSongsArray();
 
-	var selectedGenres = [];
+
+	$scope.genreFilter = function(){
 
 	$scope.filterByGenres = function(song) {
         return (selectedGenres.indexOf(song.genre) !== -1);
     };
-
-
-	$scope.genreFilter = function(){
 
 		selectedGenres = [];
 		var checkboxes = angular.element('.checkbox');

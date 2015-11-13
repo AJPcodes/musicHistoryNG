@@ -18,11 +18,11 @@
 
 	  <label for="genre">Genre:</label>
 	  <div class="checkboxes row" id="genres">
-	    <div class="checkbox col-xs-12" ng-repeat="song in songsArray | unique: 'genre'">
-				<input id="{{song.genre}}" type="checkbox" ng-model="query.genre" value="{{song.genre}}"  />
+	    <div class="col-xs-12" ng-repeat="song in songsArray | unique: 'genre'" ng-click="genreFilter()">
+				<input id="{{song.genre}}" type="checkbox" value="{{song.genre}}"  class="checkbox" checked/>
 				<label for="{{song.genre}}">{{song.genre}}</label>
 			</div>
-		 	</div>
+		</div>
 
 	  <button class="btn btn-default" id="filterSongs">Filter</button>
 
@@ -35,7 +35,7 @@
 		</div>
 
 		<div class="wrapper" id="addSongsHere">
-			<div class="song" ng-repeat="song in songsArray | filter: query" value="{{song.title}}">
+			<div class="song" ng-repeat="song in songsArray | filter: query | filter: filterByGenres" value="{{song.title}}">
 				<h3>{{ song.title }}</h3>
 			 	<p>{{ song.artist }} on {{ song.album }} - {{ song.genre }} </p>
 			 	<button class="btn btn-default edit" id="edit#{{song.key}}">Edit</button>

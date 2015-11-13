@@ -67,6 +67,28 @@ app.controller('showSongsCtrl',['$scope','$rootScope', 'songBase', function($sco
 	$scope.songsObject = songBase.getSongsObject();
 	$scope.songsArray = songBase.getSongsArray();
 
+	var selectedGenres = [];
+
+	$scope.filterByGenres = function(song) {
+        return (selectedGenres.indexOf(song.genre) !== -1);
+    };
+
+
+	$scope.genreFilter = function(){
+
+		selectedGenres = [];
+		var checkboxes = angular.element('.checkbox');
+
+		checkboxes.each(function(index, checkGenre){
+			if ($(checkGenre).prop('checked')) {
+				selectedGenres.push($(checkGenre).val());
+			}
+		});
+
+
+	} //end genreFilter
+
+
 
 }]); //end TodoCtrl
 

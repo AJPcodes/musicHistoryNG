@@ -19,7 +19,7 @@
 	  <label for="genre">Genre:</label>
 	  <div class="checkboxes row" id="genres">
 	    <div class="checkbox col-xs-12" ng-repeat="song in songsArray | unique: 'genre'">
-				<input type="checkbox" ng-model="query.genre" value="{{song.genre}}"  />
+				<input id="{{song.genre}}" type="checkbox" ng-model="query.genre" value="{{song.genre}}"  />
 				<label for="{{song.genre}}">{{song.genre}}</label>
 			</div>
 		 	</div>

@@ -34,8 +34,8 @@
 		  <input id="searchQuery" type="text" ng-model="query.$" />
 		</div>
 
-		<div class="wrapper" id="addSongsHere" ng-repeat="song in songsArray | filter: query">
-			<div class="song" value="{{song.title}}">
+		<div class="wrapper" id="addSongsHere">
+			<div class="song" ng-repeat="song in songsArray | filter: query" value="{{song.title}}">
 				<h3>{{ song.title }}</h3>
 			 	<p>{{ song.artist }} on {{ song.album }} - {{ song.genre }} </p>
 			 	<button class="btn btn-default edit" id="edit#{{song.key}}">Edit</button>

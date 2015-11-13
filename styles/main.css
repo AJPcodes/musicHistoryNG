@@ -147,8 +147,8 @@ nav a:hover {
 .song:nth-child(2n+1):hover {
   background-color: rgba(150, 155, 175, 0.9); }
 
-.history .song:nth-child(2n+1) h3,
-.history .song:nth-child(2n+1) p {
+.song:nth-child(2n+1) h3,
+.song:nth-child(2n+1) p {
   color: rgba(150, 155, 175, 0.25);
   text-shadow: 1px 1px black; }
 

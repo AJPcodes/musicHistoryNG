@@ -4,15 +4,23 @@ var app = angular.module('MusicHistoryApp', ["firebase", 'angular.filter', 'ngRo
 
 //Setting Up routes
 app.config(['$routeProvider', function($routeProvider){
+
+	//route for main song view
 	$routeProvider
 		.when('/songs/list', {
 			templateUrl: 'partials/songList.html',
 			controller: 'showSongsCtrl'
 		})
+		//route for add song form
 		.when('/songs/new', {
 			templateUrl: 'partials/songForm.html',
 			controller: 'addSongCtrl'
-		});
+	})
+    .when('/songs/:songKey', {
+      templateUrl: 'partials/singleSong.html',
+      controller: 'singleSongCtrl'
+    })
+    .otherwise({ redirectTo: '/songs/list' });
 
 }]);
 
@@ -37,7 +45,10 @@ app.factory("songBase", ['$firebaseObject', '$firebaseArray', function($firebase
     },
     getSong: function(key) {
       return songsArray.filter(function(song){
-        return song.key === key;
+      	// console.log(key);
+      	// console.log(song.key);
+      	// console.log(song.key == key);
+        return song.key == key;
       })[0];
     },
     addSong: function(newSong) {
@@ -125,3 +136,14 @@ app.controller('addSongCtrl',['$scope','$rootScope', 'songBase', function($scope
 	}; //end add new
 }]); //end addSongCtrl
 
+app.controller("singleSongCtrl",
+  ["$scope", "$routeParams", "songBase",
+  function($scope, $routeParams, songBase) {
+
+    // var songkey = $routeParams.songKey;
+    console.log($routeParams.songKey);
+    $scope.song = songBase.getSong($routeParams.songKey);
+    console.log($scope.song);
+
+  }]
+);

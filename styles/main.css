@@ -2,6 +2,9 @@
 /*#mainContent, #logInForm, #signUpForm, #addNewSongs {
   display: none; }
 */
+input.editInput, button.editInput {
+  display: none; }
+
 /*Styling for log in/sign up forms*/
 #logInForm input, #signUpForm input {
   width: 40%; }

@@ -1,12 +1,13 @@
-<div class="row" id="addNewSongs">
-	<div class="addNew col-sm-12">
+<div class="row" id="singleSong">
+	<div class="col-sm-12">
 		<div class="song" value="{{song.title}}">
-			<h4>{{ song.title }}</h3>
-		 	<h4>Artist: {{ song.artist }}</h4>
-		 	<h4>Album: {{ song.album }}</h4>
-		 	<h4>Genre: {{ song.genre }} </h4>
-		 	<button class="btn btn-default edit" id="edit#{{song.key}}">Edit</button>
-		 	<button class="btn btn-default remove" id="remove#{{song.key}}">Remove</button>
+			<h3>{{ song.title }}</h3><input class="editInput" type="text" ng-model="song.title">
+		 	<h3>Artist: {{ song.artist }}</h3><input class="editInput" type="text" ng-model="song.artist">
+		 	<h3>Album: {{ song.album }}</h3><input class="editInput" type="text" ng-model="song.album">
+		 	<h3>Genre: {{ song.genre }} </h3><input class="editInput" type="text" ng-model="song.genre">
+		 	<button type="button" ng-click="toggleEdit()" class="btn btn-default edit toggleEdit">Edit</button>
+		 	<button type="button" ng-click="editSong(song)" class="btn btn-default edit editInput">Save Changes</button>
+		 	<button type="button" ng-click="removeSong(song.key)" class="btn btn-default remove editInput">Remove</button>
 		</div>
 	</div>
 </div>

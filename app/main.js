@@ -63,7 +63,17 @@ app.factory("songBase", ['$firebaseObject', '$firebaseArray', function($firebase
 					songsArray[index].key = id;
 					songsArray.$save(index);
 				}); //end then
-   	} //end add song
+   	}, //end add song
+		removeSong: function(songKey) {
+					var index = songsArray.$indexFor(songKey);
+					songsArray.$remove(index);
+   	}, //end remove song
+   	editSong: function(editedSongData) {
+   		var index = songsArray.$indexFor(editedSongData.key);
+   		songsArray[index] = editedSongData;
+   		songsArray.$save(index);
+
+   	} //end edit song
   }; //end return
 
 }]);
@@ -83,7 +93,7 @@ app.controller('showSongsCtrl',['$scope','$rootScope', 'songBase', function($sco
 
 	$scope.filterByGenres = function(song) {
         return (selectedGenres.indexOf(song.genre) !== -1);
-    };
+  };
 
 		selectedGenres = [];
 		var checkboxes = angular.element('.checkbox');
@@ -95,7 +105,7 @@ app.controller('showSongsCtrl',['$scope','$rootScope', 'songBase', function($sco
 		});
 
 
-	} //end genreFilter
+	}; //end genreFilter
 
 
 
@@ -137,13 +147,29 @@ app.controller('addSongCtrl',['$scope','$rootScope', 'songBase', function($scope
 }]); //end addSongCtrl
 
 app.controller("singleSongCtrl",
-  ["$scope", "$routeParams", "songBase",
-  function($scope, $routeParams, songBase) {
+  ["$scope", "$routeParams", "songBase", "$location",
+  function($scope, $routeParams, songBase, $location) {
 
     // var songkey = $routeParams.songKey;
-    console.log($routeParams.songKey);
+    // console.log($routeParams.songKey);
     $scope.song = songBase.getSong($routeParams.songKey);
-    console.log($scope.song);
+    // console.log($scope.song)
+
+    $scope.removeSong = function(songKey){
+    	// console.log(songKey);
+    	songBase.removeSong(songKey);
+			$location.path( "/songs/list" )    };
+
+    //use factory to update the song array
+    $scope.editSong = function(songData){
+	    songBase.editSong(songData);
+	    $('.editInput').toggle('display');
+    };
+    //toggle edit field display
+    $scope.toggleEdit = function(songData){
+    	console.log($('.editInput'));
+    	$('.editInput').toggle('display');
+    };
 
   }]
 );

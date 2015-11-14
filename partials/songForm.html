@@ -21,14 +21,15 @@
 			<label for="genre">Genre</label>
   		<input id="genre" type="text" name="genre" placeholder="Genre" ng-model="newSongGenre" />
 
-			<button type='button' id='add-song' ng-click="addNew()">Add Song</button>
-
 			<div class="song" value="{{newSongTitle}}">
 				<p>Title: {{ newSongTitle }}</p>
 			 	<p>Artist: {{ newSongArtist }}</p>
 			 	<p>Album: {{ newSongAlbum }}</p>
 			 	<p>Genre: {{ newSongGenre }} </p>
 			</div>
+
+			<button type='button' id='add-song' ng-click="addNew()">Add Song</button>
+
 		</form>
 	</div>
 </div>

@@ -7,6 +7,10 @@ app.config(['$routeProvider', function($routeProvider){
 
 	//route for main song view
 	$routeProvider
+		.when('/songs/logIn', {
+			templateUrl: 'partials/logIn.html',
+			controller: 'authCtrl'
+		})
 		.when('/songs/list', {
 			templateUrl: 'partials/songList.html',
 			controller: 'showSongsCtrl'
@@ -20,23 +24,28 @@ app.config(['$routeProvider', function($routeProvider){
       templateUrl: 'partials/singleSong.html',
       controller: 'singleSongCtrl'
     })
-    .otherwise({ redirectTo: '/songs/list' });
+    .otherwise({ redirectTo: '/songs/logIn' });
 
 }]);
 
 //factory for working with user's songs
 app.factory("songBase", ['$firebaseObject', '$firebaseArray', function($firebaseObject, $firebaseArray) {
 
+
 		//create a globally available 'songs' object
 	var songsObject = {};
 	var songsArray = [];
+	var currentUser, ref;
 
-	var ref = new Firebase("https://ajpmusichistory.firebaseio.com/songs/songs");
-  // download the data into a local object
-  songsObject = $firebaseObject(ref);
-  songsArray = $firebaseArray(ref);
 
   return {
+  	setUser: function(userData) {
+  		currentUser = userData;
+  		ref = new Firebase("https://ajpmusichistory.firebaseio.com/users/" + currentUser.uid + "/songs");
+  		  // download the data into a local object
+  		songsObject = $firebaseObject(ref);
+ 		 	songsArray = $firebaseArray(ref);
+  	},
     getSongsObject: function() {
       return songsObject;
     },
@@ -78,11 +87,58 @@ app.factory("songBase", ['$firebaseObject', '$firebaseArray', function($firebase
 
 }]);
 
+//auth controller
+
+app.controller("authCtrl", ["$scope", "$firebaseAuth", "$location", "songBase",
+	function($scope, $firebaseAuth, $location, songBase) {
+
+    var ref = new Firebase("https://ajpmusichistory.firebaseio.com");
+    $scope.authObj = $firebaseAuth(ref);
+
+    $scope.logOut = function(){
+    	console.log('logged out');
+			authObj.$unauth();
+			$location.path( "/songs/logIn");
+			$('#mainNavbar').toggle('display');
+    };
+
+    $scope.logIn = function(){
+    	console.log('log in called');
+    	$scope.authObj.$authWithPassword({
+			  email: $scope.email,
+			  password: $scope.password
+			}).then(function(authData) {
+			  console.log("Logged in as:", authData.uid);
+			  $location.path( "/songs/list");
+			  songBase.setUser(authData);
+			  $('#mainNavbar').toggle('display');
+			}).catch(function(error) {
+			  console.error("Authentication failed:", error);
+			});
+    };
+
+
+    $scope.authWith = function(authType){
+    	// console.log('called Auth with ', authType);
+			$scope.authObj.$authWithOAuthPopup(authType).then(function(authData) {
+			  console.log("Logged in as:", authData.uid);
+			  $location.path( "/songs/list");
+			  songBase.setUser(authData);
+			  $('#mainNavbar').toggle('display');
+			}).catch(function(error) {
+			  // console.error("Authentication failed:", error);
+			});
+		};
+
+  }
+]);
 
 
 
 //controller to populate and filter songs in the main view
 app.controller('showSongsCtrl',['$scope','$rootScope', 'songBase', function($scope, $rootScope, songBase) {
+
+
 
 	//get songs as object and array from the factory
 	$scope.songsObject = songBase.getSongsObject();
@@ -158,7 +214,8 @@ app.controller("singleSongCtrl",
     $scope.removeSong = function(songKey){
     	// console.log(songKey);
     	songBase.removeSong(songKey);
-			$location.path( "/songs/list" )    };
+			$location.path( "/songs/list");
+    };
 
     //use factory to update the song array
     $scope.editSong = function(songData){

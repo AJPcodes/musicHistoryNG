@@ -1,0 +1,19 @@
+<div class="row" id="logIn">
+	<div class="logIn col-sm-12">
+		<form name="logInForm">
+
+			<h3>Welcome to Music-AJP</h3>
+			<p>Log in to view your library or sign up to start</p>
+
+			<input required type="email" ng-model="email" placeholder="Email"/>
+			<input required type="password" ng-model="password" placeholder="Password"/>
+			<button type='button' ng-click="logIn()" ng-show="email">LogIn</button>
+
+		<h4>Feel free to log in using github</h4>
+			<img class='iconImg' src="pics/githubIcon.png" ng-click="authWith('github')" alt="Auth With GitHub"/>
+		</form>
+	</div>
+</div>
+
+
+

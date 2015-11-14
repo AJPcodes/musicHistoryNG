@@ -1,9 +1,6 @@
-/*Setup Styling*/
-/*#mainContent, #logInForm, #signUpForm, #addNewSongs {
-  display: none; }
-*/
 
-input.editInput, button.editInput {
+//initialize with hidden elements
+input.editInput, button.editInput, #mainNavbar {
     display: none;
 }
 
@@ -66,6 +63,13 @@ nav a:hover {
   transform: rotate(360deg); }
 
 /*.selector Form Styles*/
+
+
+// Log in icon resize
+img.iconImg {
+  height: 30px;
+  width: 30px;
+}
 .selector {
   /*	height: 28em;
   	width: 28.75%;

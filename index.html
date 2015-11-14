@@ -11,17 +11,16 @@
 <body>
 <div ng-app="MusicHistoryApp">
 
-
-
 	<div class="container-fluid" id="mainContent">
 
-		<div class="row">
+		<div class="row" id="mainNavbar">
 
-		  <nav class="navbar navbar-default">
+		  <nav class="navbar navbar-default" ng-controller="authCtrl">
 			  	<ul class="nav navbar-nav">
 				    <li role="presentation"><a href="#/songs/list" class="selected" id="mainLink">View Music</a></li>
 				    <li role="presentation"><a href="#/songs/new" id="addLink">Add Music</a></li>
-						<li role="presentation"><a href="#">Profile</a></li>
+						<li role="presentation"><a href="#/songs/logIn" ng-click="logOut()">Log Out</a></li>
+
 					</ul>
 			</nav>
 		</div>
@@ -61,7 +60,7 @@
 	</section> -->
 
 </div>
-  	<!-- jQuery -->
+  <!-- jQuery -->
 	<script src="lib/bower_components/jquery/dist/jquery.min.js"></script>
 	<!-- Angular -->
 	<script src="lib/bower_components/angular/angular.min.js"></script>

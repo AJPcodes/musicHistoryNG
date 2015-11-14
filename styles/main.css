@@ -1,8 +1,4 @@
-/*Setup Styling*/
-/*#mainContent, #logInForm, #signUpForm, #addNewSongs {
-  display: none; }
-*/
-input.editInput, button.editInput {
+input.editInput, button.editInput, #mainNavbar {
   display: none; }
 
 /*Styling for log in/sign up forms*/
@@ -62,6 +58,10 @@ nav a:hover {
   transform: rotate(360deg); }
 
 /*.selector Form Styles*/
+img.iconImg {
+  height: 30px;
+  width: 30px; }
+
 .selector {
   /*	height: 28em;
   	width: 28.75%;

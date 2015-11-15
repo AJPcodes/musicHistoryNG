@@ -11,6 +11,10 @@ app.config(['$routeProvider', function($routeProvider){
 			templateUrl: 'partials/logIn.html',
 			controller: 'authCtrl'
 		})
+		.when('/songs/register', {
+			templateUrl: 'partials/register.html',
+			controller: 'authCtrl'
+		})
 		.when('/songs/list', {
 			templateUrl: 'partials/songList.html',
 			controller: 'showSongsCtrl'
@@ -66,9 +70,9 @@ app.factory("songBase", ['$firebaseObject', '$firebaseArray', function($firebase
 				.then(function(newSongRef) {
 					//add generated key as 'key' and save again
 		  		var id = newSongRef.key();
-		  		console.log("added record with id " + id);
+		  		// console.log("added record with id " + id);
 					var index = songsArray.$indexFor(id);
-					console.log(index);
+					// console.log(index);
 					songsArray[index].key = id;
 					songsArray.$save(index);
 				}); //end then
@@ -96,19 +100,19 @@ app.controller("authCtrl", ["$scope", "$firebaseAuth", "$location", "songBase",
     $scope.authObj = $firebaseAuth(ref);
 
     $scope.logOut = function(){
-    	console.log('logged out');
+    	// console.log('logged out');
 			authObj.$unauth();
 			$location.path( "/songs/logIn");
 			$('#mainNavbar').toggle('display');
     };
 
     $scope.logIn = function(){
-    	console.log('log in called');
+    	// console.log('log in called');
     	$scope.authObj.$authWithPassword({
 			  email: $scope.email,
 			  password: $scope.password
 			}).then(function(authData) {
-			  console.log("Logged in as:", authData.uid);
+			  // console.log("Logged in as:", authData.uid);
 			  $location.path( "/songs/list");
 			  songBase.setUser(authData);
 			  $('#mainNavbar').toggle('display');
@@ -117,11 +121,10 @@ app.controller("authCtrl", ["$scope", "$firebaseAuth", "$location", "songBase",
 			});
     };
 
-
     $scope.authWith = function(authType){
     	// console.log('called Auth with ', authType);
 			$scope.authObj.$authWithOAuthPopup(authType).then(function(authData) {
-			  console.log("Logged in as:", authData.uid);
+			  // console.log("Logged in as:", authData.uid);
 			  $location.path( "/songs/list");
 			  songBase.setUser(authData);
 			  $('#mainNavbar').toggle('display');
@@ -130,7 +133,27 @@ app.controller("authCtrl", ["$scope", "$firebaseAuth", "$location", "songBase",
 			});
 		};
 
-  }
+		$scope.register = function(){
+			  $scope.authObj.$createUser({
+			  email: $scope.newUser.email,
+			  password: $scope.newUser.password
+			}).then(function(userData) {
+			  // console.log("User " + userData.uid + " created successfully!");
+
+			  return $scope.authObj.$authWithPassword({
+			    email: $scope.newUser.email,
+			    password: $scope.newUser.password
+			  });
+			}).then(function(authData) {
+			  // console.log("Logged in as:", authData.uid);
+			  $location.path( "/songs/list");
+			  songBase.setUser(authData);
+			  $('#mainNavbar').toggle('display');
+			}).catch(function(error) {
+			  console.error("Error: ", error);
+			});
+		}; //end register
+  }//end controller function
 ]);
 
 
@@ -224,7 +247,7 @@ app.controller("singleSongCtrl",
     };
     //toggle edit field display
     $scope.toggleEdit = function(songData){
-    	console.log($('.editInput'));
+    	// console.log($('.editInput'));
     	$('.editInput').toggle('display');
     };
 

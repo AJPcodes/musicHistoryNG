@@ -1,0 +1,22 @@
+<div class="row" id="registerForm">
+	<div class="registerForm col-sm-12">
+		<form name="registerForm">
+
+			<h3>Welcome to Music-AJP</h3>
+			<p>Fill out this simple form to get started!</p>
+
+			<input required type="email" ng-model="newUser.email" placeholder="Email"/>
+			<p ng-hide="newUser.email">Please input a valid email address.</p>
+			<p ng-show="newUser.email">Good to go.</p>
+
+			<input required type="password" ng-model="newUser.password" placeholder="Password"/>
+			<input required type="password" ng-model="newUser.password2" placeholder="Confirm Password"/>
+			<p ng-hide="newUser.password && newUser.password == newUser.password2">Please Input Matching passwords</p>
+			<p ng-show="newUser.password && newUser.password == newUser.password2">Passwords Match</p>
+
+			<button type='button' ng-click="register()" ng-show="newUser.email && newUser.password && newUser.password == newUser.password2">Sign Up</button>
+
+
+		</form>
+	</div>
+</div>

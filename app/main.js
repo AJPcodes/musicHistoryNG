@@ -7,28 +7,28 @@ app.config(['$routeProvider', function($routeProvider){
 
 	//route for main song view
 	$routeProvider
-		.when('/songs/logIn', {
+		.when('/logIn', {
 			templateUrl: 'partials/logIn.html',
-			controller: 'authCtrl'
+			controller: 'AuthCtrl as authCtrl'
 		})
-		.when('/songs/register', {
+		.when('/register', {
 			templateUrl: 'partials/register.html',
-			controller: 'authCtrl'
+			controller: 'AuthCtrl as authCtrl'
 		})
 		.when('/songs/list', {
 			templateUrl: 'partials/songList.html',
-			controller: 'showSongsCtrl'
+			controller: 'ShowSongsCtrl as showSongsCtrl'
 		})
 		//route for add song form
 		.when('/songs/new', {
 			templateUrl: 'partials/songForm.html',
-			controller: 'addSongCtrl'
+			controller: 'AddSongCtrl as addSongCtrl'
 	})
     .when('/songs/:songKey', {
       templateUrl: 'partials/singleSong.html',
-      controller: 'singleSongCtrl'
+      controller: 'SingleSongCtrl as singleSongCtrl'
     })
-    .otherwise({ redirectTo: '/songs/logIn' });
+    .otherwise({ redirectTo: 'logIn' });
 
 }]);
 
@@ -93,24 +93,24 @@ app.factory("songBase", ['$firebaseObject', '$firebaseArray', function($firebase
 
 //auth controller
 
-app.controller("authCtrl", ["$scope", "$firebaseAuth", "$location", "songBase",
-	function($scope, $firebaseAuth, $location, songBase) {
+app.controller("AuthCtrl", ["$firebaseAuth", "$location", "songBase",
+	function($firebaseAuth, $location, songBase) {
 
     var ref = new Firebase("https://ajpmusichistory.firebaseio.com");
-    $scope.authObj = $firebaseAuth(ref);
+    this.authObj = $firebaseAuth(ref);
 
-    $scope.logOut = function(){
+    this.logOut = function(){
     	// console.log('logged out');
-			$scope.authObj.$unauth();
-			$location.path( "/songs/logIn");
+			this.authObj.$unauth();
+			$location.path( "/logIn");
 			$('#mainNavbar').toggle('display');
     };
 
-    $scope.logIn = function(){
+    this.logIn = function(){
     	// console.log('log in called');
-    	$scope.authObj.$authWithPassword({
-			  email: $scope.email,
-			  password: $scope.password
+    	this.authObj.$authWithPassword({
+			  email: this.email,
+			  password: this.password
 			}).then(function(authData) {
 			  // console.log("Logged in as:", authData.uid);
 			  $location.path( "/songs/list");
@@ -121,9 +121,9 @@ app.controller("authCtrl", ["$scope", "$firebaseAuth", "$location", "songBase",
 			});
     };
 
-    $scope.authWith = function(authType){
+    this.authWith = function(authType){
     	// console.log('called Auth with ', authType);
-			$scope.authObj.$authWithOAuthPopup(authType).then(function(authData) {
+			this.authObj.$authWithOAuthPopup(authType).then(function(authData) {
 			  console.log("Logged in as:", authData.uid);
 			  $location.path( "/songs/list");
 			  songBase.setUser(authData);
@@ -133,16 +133,16 @@ app.controller("authCtrl", ["$scope", "$firebaseAuth", "$location", "songBase",
 			});
 		};
 
-		$scope.register = function(){
-			  $scope.authObj.$createUser({
-			  email: $scope.newUser.email,
-			  password: $scope.newUser.password
+		this.register = function(){
+			  this.authObj.$createUser({
+			  email: this.newUser.email,
+			  password: this.newUser.password
 			}).then(function(userData) {
 			  // console.log("User " + userData.uid + " created successfully!");
 
-			  return $scope.authObj.$authWithPassword({
-			    email: $scope.newUser.email,
-			    password: $scope.newUser.password
+			  return this.authObj.$authWithPassword({
+			    email: this.newUser.email,
+			    password: this.newUser.password
 			  });
 			}).then(function(authData) {
 			  // console.log("Logged in as:", authData.uid);
@@ -159,18 +159,18 @@ app.controller("authCtrl", ["$scope", "$firebaseAuth", "$location", "songBase",
 
 
 //controller to populate and filter songs in the main view
-app.controller('showSongsCtrl',['$scope','$rootScope', 'songBase', function($scope, $rootScope, songBase) {
+app.controller('ShowSongsCtrl',['$rootScope', 'songBase', function($rootScope, songBase) {
 
 
 
 	//get songs as object and array from the factory
-	$scope.songsObject = songBase.getSongsObject();
-	$scope.songsArray = songBase.getSongsArray();
+	this.songsObject = songBase.getSongsObject();
+	this.songsArray = songBase.getSongsArray();
 
 
-	$scope.genreFilter = function(){
+	this.genreFilter = function(){
 
-	$scope.filterByGenres = function(song) {
+	this.filterByGenres = function(song) {
         return (selectedGenres.indexOf(song.genre) !== -1);
   };
 
@@ -191,62 +191,62 @@ app.controller('showSongsCtrl',['$scope','$rootScope', 'songBase', function($sco
 }]); //end TodoCtrl
 
 //controller to populate filter options
-app.controller('addSongCtrl',['$scope','$rootScope', 'songBase', function($scope, $rootScope, songBase) {
+app.controller('AddSongCtrl',['$rootScope', 'songBase', function($rootScope, songBase) {
 
 
   // get song list from the factory
   var songsArray = songBase.getSongsArray();
 
   // add new items to the array
-  $scope.addNew = function(){
+  this.addNew = function(){
 
   	//check if fields are entered
-  	if ($scope.newSongTitle.length > 0 &&
-  			$scope.newSongArtist.length > 0 &&
-  			$scope.newSongAlbum.length > 0 &&
-  			$scope.newSongGenre.length > 0){
+  	if (this.newSongTitle.length > 0 &&
+  			this.newSongArtist.length > 0 &&
+  			this.newSongAlbum.length > 0 &&
+  			this.newSongGenre.length > 0){
 
   		//build the new song
 	  	var newSong = {
-			title: $scope.newSongTitle,
-			artist: $scope.newSongArtist,
-			album: $scope.newSongAlbum,
-			genre: $scope.newSongGenre
+			title: this.newSongTitle,
+			artist: this.newSongArtist,
+			album: this.newSongAlbum,
+			genre: this.newSongGenre
 		};
 
 		songBase.addSong(newSong);
 				//reset fields
-			$scope.newSongTitle = "";
-			$scope.newSongArtist = "";
-			$scope.newSongAlbum = "";
-			$scope.newSongGenre = "";
+			this.newSongTitle = "";
+			this.newSongArtist = "";
+			this.newSongAlbum = "";
+			this.newSongGenre = "";
 		} //end if
 
 	}; //end add new
 }]); //end addSongCtrl
 
-app.controller("singleSongCtrl",
-  ["$scope", "$routeParams", "songBase", "$location",
-  function($scope, $routeParams, songBase, $location) {
+app.controller("SingleSongCtrl",
+  ["$routeParams", "songBase", "$location",
+  function($routeParams, songBase, $location) {
 
     // var songkey = $routeParams.songKey;
     // console.log($routeParams.songKey);
-    $scope.song = songBase.getSong($routeParams.songKey);
-    // console.log($scope.song)
+    this.song = songBase.getSong($routeParams.songKey);
+    // console.log(this.song)
 
-    $scope.removeSong = function(songKey){
+    this.removeSong = function(songKey){
     	// console.log(songKey);
     	songBase.removeSong(songKey);
 			$location.path( "/songs/list");
     };
 
     //use factory to update the song array
-    $scope.editSong = function(songData){
+    this.editSong = function(songData){
 	    songBase.editSong(songData);
 	    $('.editInput').toggle('display');
     };
     //toggle edit field display
-    $scope.toggleEdit = function(songData){
+    this.toggleEdit = function(songData){
     	// console.log($('.editInput'));
     	$('.editInput').toggle('display');
     };

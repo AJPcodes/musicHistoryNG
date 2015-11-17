@@ -1,13 +1,13 @@
 <div class="row" id="singleSong">
 	<div class="col-sm-12">
-		<div class="song" value="{{song.title}}">
-			<h3>{{ song.title }}</h3><input class="editInput" type="text" ng-model="song.title">
-		 	<h3>Artist: {{ song.artist }}</h3><input class="editInput" type="text" ng-model="song.artist">
-		 	<h3>Album: {{ song.album }}</h3><input class="editInput" type="text" ng-model="song.album">
-		 	<h3>Genre: {{ song.genre }} </h3><input class="editInput" type="text" ng-model="song.genre">
-		 	<button type="button" ng-click="toggleEdit()" class="btn btn-default edit toggleEdit">Edit</button>
-		 	<button type="button" ng-click="editSong(song)" class="btn btn-default edit editInput">Save Changes</button>
-		 	<button type="button" ng-click="removeSong(song.key)" class="btn btn-default remove editInput">Remove</button>
+		<div class="song" value="{{singleSongCtrl.song.title}}">
+			<h3>{{ singleSongCtrl.song.title }}</h3><input class="editInput" type="text" ng-model="singleSongCtrl.song.title">
+		 	<h3>Artist: {{ singleSongCtrl.song.artist }}</h3><input class="editInput" type="text" ng-model="singleSongCtrl.song.artist">
+		 	<h3>Album: {{ singleSongCtrl.song.album }}</h3><input class="editInput" type="text" ng-model="singleSongCtrl.song.album">
+		 	<h3>Genre: {{ singleSongCtrl.song.genre }} </h3><input class="editInput" type="text" ng-model="singleSongCtrl.song.genre">
+		 	<button type="button" ng-click="singleSongCtrl.toggleEdit()" class="btn btn-default edit toggleEdit">Edit</button>
+		 	<button type="button" ng-click="singleSongCtrl.editSong(singleSongCtrl.song)" class="btn btn-default edit editInput">Save Changes</button>
+		 	<button type="button" ng-click="singleSongCtrl.removeSong(singleSongCtrl.song.key)" class="btn btn-default remove editInput">Remove</button>
 		</div>
 	</div>
 </div>

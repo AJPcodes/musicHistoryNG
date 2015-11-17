@@ -6,29 +6,29 @@
 
 			<!-- //title -->
 			<label for="song_title">Song Title</label>
-  		<input id="song_title" type="text" name="song_name" placeholder="Song Title" ng-model="newSongTitle"/>
+  		<input id="song_title" type="text" name="song_name" placeholder="Song Title" ng-model="addSongCtrl.newSongTitle"/>
 
 			<!-- //artist -->
 			<label for="artist">Artist</label>
-  		<input id="artist" type="text" name="artist" placeholder="Artist" ng-model="newSongArtist"/>
+  		<input id="artist" type="text" name="artist" placeholder="Artist" ng-model="addSongCtrl.newSongArtist"/>
 
 
 			<!-- //album -->
 			<label for="album">Album</label>
-  		<input id="album" type="text" name="album" placeholder="Album" ng-model="newSongAlbum"/>
+  		<input id="album" type="text" name="album" placeholder="Album" ng-model="addSongCtrl.newSongAlbum"/>
 
 			<!-- //genre -->
 			<label for="genre">Genre</label>
-  		<input id="genre" type="text" name="genre" placeholder="Genre" ng-model="newSongGenre" />
+  		<input id="genre" type="text" name="genre" placeholder="Genre" ng-model="addSongCtrl.newSongGenre" />
 
-			<div class="song" value="{{newSongTitle}}">
-				<p>Title: {{ newSongTitle }}</p>
-			 	<p>Artist: {{ newSongArtist }}</p>
-			 	<p>Album: {{ newSongAlbum }}</p>
-			 	<p>Genre: {{ newSongGenre }} </p>
+			<div class="song" value="{{addSongCtrl.newSongTitle}}">
+				<p>Title: {{ addSongCtrl.newSongTitle }}</p>
+			 	<p>Artist: {{ addSongCtrl.newSongArtist }}</p>
+			 	<p>Album: {{ addSongCtrl.newSongAlbum }}</p>
+			 	<p>Genre: {{ addSongCtrl.newSongGenre }} </p>
 			</div>
 
-			<button type='button' id='add-song' ng-click="addNew()">Add Song</button>
+			<button type='button' id='add-song' ng-click="addSongCtrl.addNew()">Add Song</button>
 
 		</form>
 	</div>

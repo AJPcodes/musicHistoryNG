@@ -5,15 +5,15 @@
 			<h3>Welcome to Music-AJP</h3>
 			<p>Log in to view your library or sign up to start</p>
 
-			<input required type="email" ng-model="email" placeholder="Email"/>
-			<input required type="password" ng-model="password" placeholder="Password"/>
-			<button type='button' ng-click="logIn()" ng-show="email && password">LogIn</button>
+			<input required type="email" ng-model="authCtrl.email" placeholder="Email"/>
+			<input required type="password" ng-model="authCtrl.password" placeholder="Password"/>
+			<button type='button' ng-click="authCtrl.logIn()" ng-show="authCtrl.email && authCtrl.password">LogIn</button>
 
 		<h4>You can also log in using Facebook or Github</h4>
-		<img class='iconImg' src="pics/githubIcon.png" ng-click="authWith('github')" alt="Auth With GitHub"/><img class='iconImg' src="pics/facebookIcon.png" ng-click="authWith('facebook')" alt="Auth With Facebook"/>
+		<img class='iconImg' src="pics/githubIcon.png" ng-click="authCtrl.authWith('github')" alt="Auth With GitHub"/><img class='iconImg' src="pics/facebookIcon.png" ng-click="authCtrl.authWith('facebook')" alt="Auth With Facebook"/>
 		</form>
 
-			<h3>Don't have an account? <a href="#/songs/register">Register</a> to get started.</h3>
+			<h3>Don't have an account? <a href="#/register">Register</a> to get started.</h3>
 	</div>
 </div>
 

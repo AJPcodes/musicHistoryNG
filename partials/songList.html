@@ -3,22 +3,22 @@
 	<div class="selector col-sm-3">
 
 	  <label for="artist">Artist:</label>
-	  <input id='artistInput' list="artist_list" name="artist"  value="All" class="form-control" ng-model="query.artist">
+	  <input id='artistInput' list="artist_list" name="artist"  value="All" class="form-control" ng-model="showSongsCtrl.query.artist">
 	  <datalist id="artist_list" >
 	  	<option value=""></option>
-			<option  ng-repeat="song in songsArray  | unique: 'artist'" value="{{song.artist}}">
+			<option  ng-repeat="song in showSongsCtrl.songsArray  | unique: 'artist'" value="{{song.artist}}">
 	  </datalist>
 
 	  <label for="album">Album:</label>
-	  <input id='albumInput' list="album_list" name="album" value="All" class="form-control" ng-model="query.album">
+	  <input id='albumInput' list="album_list" name="album" value="All" class="form-control" ng-model="showSongsCtrl.query.album">
 	  <datalist id="album_list">
 	  	<option value=""></option>
-			<option  ng-repeat="song in songsArray | unique: 'album'" value="{{song.album}}">
+			<option  ng-repeat="song in showSongsCtrl.songsArray | unique: 'album'" value="{{song.album}}">
 	  </datalist>
 
 	  <label for="genre">Genre:</label>
 	  <div class="checkboxes row" id="genres">
-	    <div class="col-xs-12" ng-repeat="song in songsArray | unique: 'genre'" ng-click="genreFilter()">
+	    <div class="col-xs-12" ng-repeat="song in showSongsCtrl.songsArray | unique: 'genre'" ng-click="showSongsCtrl.genreFilter()">
 				<input id="{{song.genre}}" type="checkbox" value="{{song.genre}}"  class="checkbox" checked/>
 				<label for="{{song.genre}}">{{song.genre}}</label>
 			</div>
@@ -30,11 +30,11 @@
 	<div class="history col-sm-9">
 		<div>
 			<label for="searchQuery">Search by:  Song Title - Artist - Album - Genre </label>
-		  <input id="searchQuery" type="text" ng-model="query.$" />
+		  <input id="searchQuery" type="text" ng-model="showSongsCtrl.query.$" />
 		</div>
 
 		<div class="wrapper" id="addSongsHere">
-			<div class="song" ng-repeat="song in songsArray | filter: query | filter: filterByGenres" value="{{song.title}}">
+			<div class="song" ng-repeat="song in showSongsCtrl.songsArray | filter: showSongsCtrl.query | filter: showSongsCtrl.filterByGenres" value="{{song.title}}">
 				<a href="#/songs/{{ song.key }}">{{ song.name }}
 				<h3>{{ song.title }}</h3>
 			 	<p>{{ song.artist }} on {{ song.album }} - {{ song.genre }} </p>

@@ -124,12 +124,12 @@ app.controller("authCtrl", ["$scope", "$firebaseAuth", "$location", "songBase",
     $scope.authWith = function(authType){
     	// console.log('called Auth with ', authType);
 			$scope.authObj.$authWithOAuthPopup(authType).then(function(authData) {
-			  // console.log("Logged in as:", authData.uid);
+			  console.log("Logged in as:", authData.uid);
 			  $location.path( "/songs/list");
 			  songBase.setUser(authData);
 			  $('#mainNavbar').toggle('display');
 			}).catch(function(error) {
-			  // console.error("Authentication failed:", error);
+			  console.error("Authentication failed:", error);
 			});
 		};
 

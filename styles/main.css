@@ -1,3 +1,4 @@
+/*Setup Styling*/
 input.editInput, button.editInput, #mainNavbar {
   display: none; }
 
@@ -29,8 +30,10 @@ button.btn-default {
 nav.navbar {
   background-color: rgba(37, 154, 63, 0.25);
   margin: 0;
+  line-height: 4.5em;
   padding: 0 3%;
-  border: 4px solid black; }
+  border: 1px solid white;
+  height: 5em; }
 
 nav a.btn-default {
   font-size: 1.25em;
@@ -52,23 +55,27 @@ nav a:hover {
   text-decoration: none;
   color: black;
   text-shadow: 2px 2px white;
-  -moz-transform: rotate(360deg);
-  -o-transform: rotate(360deg);
-  -webkit-transform: rotate(360deg);
-  transform: rotate(360deg); }
+  -moz-transition: color 1.5s, transform 1s;
+  -o-transition: color 1.5s, transform 1s;
+  -webkit-transition: color 1.5s, transform 1s;
+  transition: color 1.5s, transform 1s;
+  -moz-transform: rotate(1440deg);
+  -o-transform: rotate(1440deg);
+  -webkit-transform: rotate(1440deg);
+  transform: rotate(1440deg); }
 
-/*.selector Form Styles*/
 img.iconImg {
   height: 30px;
   width: 30px; }
 
+/*.selector Form Styles*/
 .selector {
-  /*	height: 28em;
-  	width: 28.75%;
-  	float: left;*/
+  /*  height: 28em;
+    width: 28.75%;
+    float: left;*/
   height: 40em;
   background-color: rgba(150, 155, 175, 0.25);
-  border: 4px solid black;
+  border: 1px solid white;
   overflow: scroll; }
 
 .selector label, .selector input {
@@ -110,7 +117,7 @@ img.iconImg {
 .history, .addNew {
   height: 40em;
   background-color: rgba(245, 245, 23, 0.25);
-  border: 4px solid black;
+  border: 1px solid white;
   padding: 5%;
   overflow: scroll; }
 
@@ -124,34 +131,35 @@ img.iconImg {
   text-align: center;
   display: block;
   margin: 1em auto; }
-
 .addNew input {
   border: 1px solid black; }
 
 .song {
   background-color: rgba(145, 162, 228, 0.4);
   padding: 1em;
-  -moz-transition: background-color 2s;
-  -o-transition: background-color 2s;
-  -webkit-transition: background-color 2s;
-  transition: background-color 2s; }
+  -moz-transition: background-color 2s, font-size 2s;
+  -o-transition: background-color 2s, font-size 2s;
+  -webkit-transition: background-color 2s, font-size 2s;
+  transition: background-color 2s, font-size 2s; }
 
 .song:hover {
-  background-color: rgba(145, 162, 228, 0.9); }
+  background-color: rgba(145, 162, 228, 0.9);
+  font-size: 1.2em; }
 
 .song:nth-child(2n+1) {
   background-color: rgba(150, 155, 175, 0.4);
   padding: 1em;
-  -moz-transition: background-color 2s;
-  -o-transition: background-color 2s;
-  -webkit-transition: background-color 2s;
-  transition: background-color 2s; }
+  -moz-transition: background-color 2s, font-size 2s;
+  -o-transition: background-color 2s, font-size 2s;
+  -webkit-transition: background-color 2s, font-size 2s;
+  transition: background-color 2s, font-size 2s; }
 
 .song:nth-child(2n+1):hover {
-  background-color: rgba(150, 155, 175, 0.9); }
+  background-color: rgba(150, 155, 175, 0.9);
+  font-size: 1.2em; }
 
-.song:nth-child(2n+1) h3,
-.song:nth-child(2n+1) p {
+.history .song:nth-child(2n+1) h3,
+.history .song:nth-child(2n+1) p {
   color: rgba(150, 155, 175, 0.25);
   text-shadow: 1px 1px black; }
 
@@ -188,8 +196,8 @@ footer {
 /*Hidden Nav
 
 nav.hidden {
-	visibility: hidden;
-	position: static;
+  visibility: hidden;
+  position: static;
 }
 
 */
@@ -201,10 +209,9 @@ nav.hidden {
     border-bottom: 0px; }
 
   .history {
-    border: 4px solid black; }
+    border: 1px solid white; }
 
   body {
     margin: 0; } }
-/*# sourceMappingURL=main.css.map */
 
 /*# sourceMappingURL=main.css.map */

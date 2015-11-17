@@ -9,8 +9,8 @@
 			<input required type="password" ng-model="password" placeholder="Password"/>
 			<button type='button' ng-click="logIn()" ng-show="email">LogIn</button>
 
-		<h4>Feel free to log in using github</h4>
-			<img class='iconImg' src="pics/githubIcon.png" ng-click="authWith('github')" alt="Auth With GitHub"/>
+		<h4>You can also log in using Facebook or Github</h4>
+		<img class='iconImg' src="pics/githubIcon.png" ng-click="authWith('github')" alt="Auth With GitHub"/><img class='iconImg' src="pics/facebookIcon.png" ng-click="authWith('facebook')" alt="Auth With Facebook"/>
 		</form>
 
 			<h3>Don't have an account? <a href="#/songs/register">Register</a> to get started.</h3>

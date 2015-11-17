@@ -1,3 +1,68 @@
+// Colors:
+
+$font-stack: Oswald, Sans-serif;
+$font-color: black;
+$color1: rgba(37,154,63,0.25); //nav bar green
+$color2: rgba(150,155,175,0.25);//grey
+$color3: rgba(245,245,23,0.25);//yellow
+
+$color1op: rgba(37,154,63,0.90); //nav bar green
+$color2op: rgba(150,155,175,0.90);//grey
+$color3op: rgba(245,245,23,0.90);//yellow
+
+$songBackGround1: rgba(145,162,228,0.4);  //purple?
+$songBackGround2: rgba(150,155,175,0.4); //lighter purple?
+
+$songBackGround1op: rgba(145,162,228,0.9);
+$songBackGround2op: rgba(150,155,175,0.9);
+
+$border: 1px solid white;
+$mainBackground: url("./../pics/background-fractals1.jpg");
+
+
+
+// MIXINS!
+@mixin transform($degrees) {
+    -moz-transform:    $degrees;
+    -o-transform:      $degrees;
+    -webkit-transform: $degrees;
+    transform:         $degrees;
+
+}
+
+@mixin transition($transition...) {
+    -moz-transition:    $transition;
+    -o-transition:      $transition;
+    -webkit-transition: $transition;
+    transition:         $transition;
+}
+@mixin transition-property($property...) {
+    -moz-transition-property:    $property;
+    -o-transition-property:      $property;
+    -webkit-transition-property: $property;
+    transition-property:         $property;
+}
+@mixin transition-duration($duration...) {
+    -moz-transition-property:    $duration;
+    -o-transition-property:      $duration;
+    -webkit-transition-property: $duration;
+    transition-property:         $duration;
+}
+@mixin transition-timing-function($timing...) {
+    -moz-transition-timing-function:    $timing;
+    -o-transition-timing-function:      $timing;
+    -webkit-transition-timing-function: $timing;
+    transition-timing-function:         $timing;
+}
+@mixin transition-delay($delay...) {
+    -moz-transition-delay:    $delay;
+    -o-transition-delay:      $delay;
+    -webkit-transition-delay: $delay;
+    transition-delay:         $delay;
+}
+
+
+/*Setup Styling*/
 
 //initialize with hidden elements
 input.editInput, button.editInput, #mainNavbar {
@@ -6,211 +71,276 @@ input.editInput, button.editInput, #mainNavbar {
 
 
 /*Styling for log in/sign up forms*/
+
 #logInForm input, #signUpForm input {
-  width: 40%; }
+  width: 40%
+}
 
 /*General Styles*/
 body {
   margin: 10%;
-  background-image: url("./../pics/background-fractals1.jpg");
+  background-image: $mainBackground;
   background-size: cover;
   background-repeat: no-repeat;
-  color: black; }
+  color: $font-color;
+}
 
 body, h1, h2, h3, h4, h5, h6, p {
-  font-family: Oswald, Sans-serif; }
+  font-family: $font-stack;
+}
 
 nav, div.selector, div.history {
-  box-sizing: border-box; }
+  box-sizing: border-box;
+}
 
 button.btn-default {
   padding: 5px;
   margin: 0.5em auto 0.5em;
   border: 1px solid black;
-  background-color: rgba(150, 155, 175, 0.25); }
+  background-color: $color2;
+}
 
 /*Nav Stlyes*/
+
 nav.navbar {
-  background-color: rgba(37, 154, 63, 0.25);
+  background-color:  $color1;
   margin: 0;
+  line-height: 4.5em;
   padding: 0 3%;
-  border: 4px solid black;
-  }
+  // position: fixed;
+  border: $border;
+  height: 5em;
+
+}
+
 
 nav a.btn-default {
   font-size: 1.25em;
   padding: 0 25px;
   text-align: center;
-  background-color: rgba(150, 155, 175, 0.25);
+  background-color: $color2;
   color: white;
   text-shadow: 2px 2px black;
-  -moz-transition: color 1.5s, transform 1.5s;
-  -o-transition: color 1.5s, transform 1.5s;
-  -webkit-transition: color 1.5s, transform 1.5s;
-  transition: color 1.5s, transform 1.5s; }
+  @include transition(color 1.5s, transform 1.5s);
+}
 
 nav a.selected {
   text-decoration: none;
-  color: rgba(245, 245, 23, 0.25); }
+  color: $color3;
+}
 
-nav a:hover {
+nav a:hover{
   text-decoration: none;
   color: black;
   text-shadow: 2px 2px white;
-  -moz-transform: rotate(360deg);
-  -o-transform: rotate(360deg);
-  -webkit-transform: rotate(360deg);
-  transform: rotate(360deg); }
-
-/*.selector Form Styles*/
-
+  @include transition(color 1.5s, transform 1s);
+  @include transform(rotate(1440deg));
+}
 
 // Log in icon resize
 img.iconImg {
   height: 30px;
   width: 30px;
 }
+
+
+/*.selector Form Styles*/
+
 .selector {
-  /*	height: 28em;
-  	width: 28.75%;
-  	float: left;*/
+/*  height: 28em;
+  width: 28.75%;
+  float: left;*/
   height: 40em;
-  background-color: rgba(150, 155, 175, 0.25);
-  border: 4px solid black;
-  overflow: scroll; }
+  background-color:  $color2;
+  border: $border;
+  overflow: scroll;
+
+}
 
 .selector label, .selector input {
-  margin: 5px; }
+  margin: 5px;
+
+}
 
 .selector label {
   display: block;
-  padding: 5px; }
+  padding: 5px;
+}
 
 .selector form > input {
   display: block;
   padding: 5px;
   width: 80%;
   margin: auto;
-  border: 1px solid black; }
+  border: 1px solid black;
+
+}
 
 .selector .checkboxes {
   margin: 1em 0 1.5em;
-  width: 95%; }
+  width: 95%;
+}
+
+
+// .selector .checkboxes input {
+//  margin: 1em 0.5em;
+// }
 
 .selector .checkboxes label {
   font-size: 1em;
   line-height: 1em;
   text-align: center;
-  display: inline-block; }
+  display: inline-block;
+}
 
-.checkboxes input {
-  display: inline-block; }
+.checkboxes input{
+
+  display: inline-block;
+
+}
 
 .selector .checkbox {
-  margin: 0; }
+  margin: 0;
+}
 
 .selector button {
   clear: both;
   display: block;
-  margin: 2em auto 1em; }
+  margin: 2em auto 1em;
+
+}
 
 /*.History Styles*/
-.history, .addNew {
+
+.history, .addNew{
   height: 40em;
-  background-color: rgba(245, 245, 23, 0.25);
-  border: 4px solid black;
+  background-color: $color3;
+  border: $border;
   padding: 5%;
-  overflow: scroll; }
+  overflow: scroll;
+}
 
 .history {
-  border-left: 0px; }
+  border-left: 0px;
+}
 
 .history .wrapper {
-  margin: 1em 0; }
+  margin: 1em 0;
 
-.addNew h3, .addNew label, .addNew input, .addNew button {
-  text-align: center;
-  display: block;
-  margin: 1em auto; }
-.addNew input {
-  border: 1px solid black; }
+}
+
+//Add New Songs styles
+
+.addNew {
+
+  h3, label, input, button {
+    text-align: center;
+    display: block;
+    margin: 1em auto;
+  }
+
+  input {
+    border: 1px solid black;
+  }
+}
 
 .song {
-  background-color: rgba(145, 162, 228, 0.4);
+  background-color: $songBackGround1;
   padding: 1em;
-  -moz-transition: background-color 2s;
-  -o-transition: background-color 2s;
-  -webkit-transition: background-color 2s;
-  transition: background-color 2s; }
+  @include transition(background-color 2s, font-size 2s);
+}
 
 .song:hover {
-  background-color: rgba(145, 162, 228, 0.9); }
+  background-color: $songBackGround1op;
+  font-size: 1.2em;
+}
 
 .song:nth-child(2n+1) {
-  background-color: rgba(150, 155, 175, 0.4);
+  background-color: $songBackGround2;
   padding: 1em;
-  -moz-transition: background-color 2s;
-  -o-transition: background-color 2s;
-  -webkit-transition: background-color 2s;
-  transition: background-color 2s; }
+  @include transition(background-color 2s, font-size 2s);
+}
 
 .song:nth-child(2n+1):hover {
-  background-color: rgba(150, 155, 175, 0.9); }
+  background-color: $songBackGround2op;
+  font-size: 1.2em;
+}
 
-.song:nth-child(2n+1) h3,
-.song:nth-child(2n+1) p {
-  color: rgba(150, 155, 175, 0.25);
-  text-shadow: 1px 1px black; }
+
+.history .song:nth-child(2n+1) h3,
+.history .song:nth-child(2n+1) p {
+  color: $color2;
+  text-shadow: 1px 1px black;
+}
 
 .history .song:first-child h3,
 .history .song:first-child p {
-  font-weight: bold; }
+  font-weight: bold;
+}
 
 .history h3 {
+
   line-height: 1em;
   font-size: 1.5em;
   margin: .75em 1em;
-  color: rgba(37, 154, 63, 0.25);
-  text-shadow: 1px 1px black; }
+  color: $color1;
+  text-shadow: 1px 1px black;
+}
 
 .history p {
+
   display: inline-block;
   line-height: 2.5em;
   margin: 0 1em 0;
   text-align: center;
   font-size: 1em;
-  color: black;
-  text-shadow: 1px 1px black; }
+  color: $font-color;
+  text-shadow: 1px 1px black;
+}
 
 .history button {
-  display: block; }
+  display: block;
+
+}
 
 .history button.remove, .history button.edit {
-  display: none; }
+  display: none;
+}
+
 
 /*Footer*/
 footer {
-  clear: both; }
+  clear: both;
+}
 
 /*Hidden Nav
 
 nav.hidden {
-	visibility: hidden;
-	position: static;
+  visibility: hidden;
+  position: static;
 }
 
 */
-@media only screen and (max-width: 768px) {
+
+//media qeury
+
+@media only screen  and (max-width : 768px) {
+
   nav {
-    height: 15em; }
+    height: 15em;
+  }
 
   nav, .selector {
-    border-bottom: 0px; }
+    border-bottom: 0px;
+  }
+
 
   .history {
-    border: 4px solid black; }
+    border: $border;
+  }
 
   body {
-    margin: 0; } }
+    margin: 0;
+  }
 
-/*# sourceMappingURL=main.css.map */
+}

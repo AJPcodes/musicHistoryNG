@@ -101,7 +101,7 @@ app.controller("authCtrl", ["$scope", "$firebaseAuth", "$location", "songBase",
 
     $scope.logOut = function(){
     	// console.log('logged out');
-			authObj.$unauth();
+			$scope.authObj.$unauth();
 			$location.path( "/songs/logIn");
 			$('#mainNavbar').toggle('display');
     };

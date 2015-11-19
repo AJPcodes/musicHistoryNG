@@ -1,3 +1,5 @@
+<div nav-bar-dir></div>
+
 <div class="row" id="mainView">
 
 	<div class="selector col-sm-3">
@@ -35,10 +37,7 @@
 
 		<div class="wrapper" id="addSongsHere">
 			<div class="song" ng-repeat="song in showSongsCtrl.songsArray | filter: showSongsCtrl.query | filter: showSongsCtrl.filterByGenres" value="{{song.title}}">
-				<a href="#/songs/{{ song.key }}">{{ song.name }}
-				<h3>{{ song.title }}</h3>
-			 	<p>{{ song.artist }} on {{ song.album }} - {{ song.genre }} </p>
-			 	</a>
+				<div song-display-dir></div>
 			</div>
 		</div>
 	</div>

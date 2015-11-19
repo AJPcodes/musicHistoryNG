@@ -1,0 +1,7 @@
+<a href="#/songs/{{ song.key }}">{{ song.name }}
+<h3>{{ song.title }}</h3>
+<p>{{ song.artist }} on {{ song.album }} - {{ song.genre }} </p>
+</a>
+<ul class="rating">
+	<li ng-click="showSongsCtrl.rate(star.key, star.value)" class="{{star.class}}" ng-repeat="star in stars">&#9733;</li>
+</ul>

@@ -65,8 +65,21 @@ $mainBackground: url("./../pics/abstractwhite.jpg");
 /*Setup Styling*/
 
 //initialize with hidden elements
-input.editInput, button.editInput, #mainNavbar {
+input.editInput, button.editInput {
     display: none;
+}
+
+.star--empty, .star--filled {
+  display: inline;
+  list-style: none;
+}
+
+.star--empty {
+  color: rgba(0,0,0,.5);
+}
+
+.star--filled {
+  color: yellow;
 }
 
 

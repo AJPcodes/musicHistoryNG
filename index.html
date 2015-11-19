@@ -13,7 +13,6 @@
 
 	<div class="container-fluid" id="mainContent">
 
-		<div ng-include="'./partials/navBar.html'"></div>
 		<div ng-view></div>
 
 
@@ -62,10 +61,17 @@
 	<!-- Angular Route -->
 	<script src="lib/bower_components/angular-route/angular-route.min.js"></script>
 	<script src="app/main.js"></script>
+	<!-- factories! -->
 	<script src="app/songBaseFac.js"></script>
+	<!-- controllers! -->
 	<script src="app/authCtrl.js"></script>
 	<script src="app/addSongCtrl.js"></script>
 	<script src="app/showSongCtrl.js"></script>
 	<script src="app/singleSongCtrl.js"></script>
+	<!-- custom directives! -->
+	<script src="app/directives/navBar.js"></script>
+	<script src="app/directives/songDisplay.js"></script>
+
+
 </body>
 </html>

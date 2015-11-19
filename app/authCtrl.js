@@ -10,7 +10,6 @@ app.controller("AuthCtrl", ["$firebaseAuth", "$location", "songBase",
     	// console.log('logged out');
 			this.authObj.$unauth();
 			$location.path( "/logIn");
-			$('#mainNavbar').toggle('display');
     };
 
     this.logIn = function(){
@@ -22,7 +21,6 @@ app.controller("AuthCtrl", ["$firebaseAuth", "$location", "songBase",
 			  // console.log("Logged in as:", authData.uid);
 			  $location.path( "/songs/list");
 			  songBase.setUser(authData);
-			  $('#mainNavbar').toggle('display');
 			}).catch(function(error) {
 			  console.error("Authentication failed:", error);
 			});
@@ -34,7 +32,6 @@ app.controller("AuthCtrl", ["$firebaseAuth", "$location", "songBase",
 			  console.log("Logged in as:", authData.uid);
 			  $location.path( "/songs/list");
 			  songBase.setUser(authData);
-			  $('#mainNavbar').toggle('display');
 			}).catch(function(error) {
 			  console.error("Authentication failed:", error);
 			});
@@ -55,7 +52,6 @@ app.controller("AuthCtrl", ["$firebaseAuth", "$location", "songBase",
 			  // console.log("Logged in as:", authData.uid);
 			  $location.path( "/songs/list");
 			  songBase.setUser(authData);
-			  $('#mainNavbar').toggle('display');
 			}).catch(function(error) {
 			  console.error("Error: ", error);
 			});

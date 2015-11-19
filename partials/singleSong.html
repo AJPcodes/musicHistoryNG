@@ -1,6 +1,8 @@
+<div nav-bar-dir></div>
+
 <div class="row" id="singleSong">
-	<div class="col-sm-12">
-		<div class="song" value="{{singleSongCtrl.song.title}}">
+	<div class="col-sm-12 song">
+
 			<h3>{{ singleSongCtrl.song.title }}</h3><input class="editInput" type="text" ng-model="singleSongCtrl.song.title">
 		 	<h3>Artist: {{ singleSongCtrl.song.artist }}</h3><input class="editInput" type="text" ng-model="singleSongCtrl.song.artist">
 		 	<h3>Album: {{ singleSongCtrl.song.album }}</h3><input class="editInput" type="text" ng-model="singleSongCtrl.song.album">
@@ -8,6 +10,6 @@
 		 	<button type="button" ng-click="singleSongCtrl.toggleEdit()" class="btn btn-default edit toggleEdit">Edit</button>
 		 	<button type="button" ng-click="singleSongCtrl.editSong(singleSongCtrl.song)" class="btn btn-default edit editInput">Save Changes</button>
 		 	<button type="button" ng-click="singleSongCtrl.removeSong(singleSongCtrl.song.key)" class="btn btn-default remove editInput">Remove</button>
-		</div>
+
 	</div>
 </div>

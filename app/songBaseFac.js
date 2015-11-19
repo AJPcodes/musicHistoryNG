@@ -1,5 +1,5 @@
 //factory for working with user's songs
-app.factory("songBase", ['$firebaseObject', '$firebaseArray', function($firebaseObject, $firebaseArray) {
+app.factory("songBase", ['$firebaseObject', '$firebaseArray', '$location', function($firebaseObject, $firebaseArray, $location) {
 
 
 		//create a globally available 'songs' object
@@ -9,6 +9,8 @@ app.factory("songBase", ['$firebaseObject', '$firebaseArray', function($firebase
 
 
   return {
+    reloadStars: false,
+
   	setUser: function(userData) {
   		currentUser = userData;
   		ref = new Firebase("https://ajpmusichistory.firebaseio.com/users/" + currentUser.uid + "/songs");
@@ -47,12 +49,20 @@ app.factory("songBase", ['$firebaseObject', '$firebaseArray', function($firebase
 					var index = songsArray.$indexFor(songKey);
 					songsArray.$remove(index);
    	}, //end remove song
-   	editSong: function(editedSongData) {
-   		var index = songsArray.$indexFor(editedSongData.key);
-   		songsArray[index] = editedSongData;
-   		songsArray.$save(index);
+    editSong: function(editedSongData) {
+      var index = songsArray.$indexFor(editedSongData.key);
+      songsArray[index] = editedSongData;
+      songsArray.$save(index);
 
-   	} //end edit song
+    }, //end edit song
+    rateSong: function(key, newRating) {
+      var index = songsArray.$indexFor(key);
+      songsArray[index].rating = newRating;
+      songsArray.$save(index);
+      $location.path( "#/song/list");
+
+
+    } //end rate song
   }; //end return
 
 }]);

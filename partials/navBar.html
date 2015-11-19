@@ -1,0 +1,11 @@
+<div class="row" id="mainNavbar">
+
+  <nav class="navbar navbar-default" ng-controller="AuthCtrl as authCtrl">
+	  	<ul class="nav navbar-nav">
+		    <li role="presentation"><a href="#/songs/list" class="selected" id="mainLink">View Music</a></li>
+		    <li role="presentation"><a href="#/songs/new" id="addLink">Add Music</a></li>
+				<li role="presentation"><a href="#/logIn" ng-click="authCtrl.logOut()">Log Out</a></li>
+
+			</ul>
+	</nav>
+</div>

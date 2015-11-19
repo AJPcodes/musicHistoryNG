@@ -9,10 +9,11 @@ input.editInput, button.editInput, #mainNavbar {
 /*General Styles*/
 body {
   margin: 10%;
-  background-image: url("./../pics/background-fractals1.jpg");
+  background-image: url("./../pics/abstractwhite.jpg");
   background-size: cover;
   background-repeat: no-repeat;
-  color: black; }
+  color: black;
+  border-radius: none; }
 
 body, h1, h2, h3, h4, h5, h6, p {
   font-family: Oswald, Sans-serif; }
@@ -32,15 +33,16 @@ nav.navbar {
   margin: 0;
   line-height: 4.5em;
   padding: 0 3%;
-  border: 1px solid white;
-  height: 5em; }
+  border: 2px solid black;
+  border-bottom: 0px;
+  border-radius: 0px; }
 
 nav a.btn-default {
   font-size: 1.25em;
   padding: 0 25px;
   text-align: center;
   background-color: rgba(150, 155, 175, 0.25);
-  color: white;
+  color: #000;
   text-shadow: 2px 2px black;
   -moz-transition: color 1.5s, transform 1.5s;
   -o-transition: color 1.5s, transform 1.5s;
@@ -49,7 +51,7 @@ nav a.btn-default {
 
 nav a.selected {
   text-decoration: none;
-  color: rgba(245, 245, 23, 0.25); }
+  color: #000; }
 
 nav a:hover {
   text-decoration: none;
@@ -64,9 +66,12 @@ nav a:hover {
   -webkit-transform: rotate(1440deg);
   transform: rotate(1440deg); }
 
+.navbar-nav li a {
+  color: #000; }
+
 img.iconImg {
-  height: 30px;
-  width: 30px; }
+  height: 45px;
+  width: 45px; }
 
 /*.selector Form Styles*/
 .selector {
@@ -75,7 +80,7 @@ img.iconImg {
     float: left;*/
   height: 40em;
   background-color: rgba(150, 155, 175, 0.25);
-  border: 1px solid white;
+  border: 2px solid black;
   overflow: scroll; }
 
 .selector label, .selector input {
@@ -117,7 +122,7 @@ img.iconImg {
 .history, .addNew {
   height: 40em;
   background-color: rgba(245, 245, 23, 0.25);
-  border: 1px solid white;
+  border: 2px solid black;
   padding: 5%;
   overflow: scroll; }
 
@@ -209,7 +214,7 @@ nav.hidden {
     border-bottom: 0px; }
 
   .history {
-    border: 1px solid white; }
+    border: 2px solid black; }
 
   body {
     margin: 0; } }

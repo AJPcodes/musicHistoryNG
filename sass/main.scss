@@ -16,8 +16,8 @@ $songBackGround2: rgba(150,155,175,0.4); //lighter purple?
 $songBackGround1op: rgba(145,162,228,0.9);
 $songBackGround2op: rgba(150,155,175,0.9);
 
-$border: 1px solid white;
-$mainBackground: url("./../pics/background-fractals1.jpg");
+$border: 2px solid black;
+$mainBackground: url("./../pics/abstractwhite.jpg");
 
 
 
@@ -83,6 +83,7 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   color: $font-color;
+  border-radius: none;
 }
 
 body, h1, h2, h3, h4, h5, h6, p {
@@ -109,7 +110,9 @@ nav.navbar {
   padding: 0 3%;
   // position: fixed;
   border: $border;
-  height: 5em;
+  border-bottom: 0px;
+  border-radius: 0px;
+
 
 }
 
@@ -119,14 +122,14 @@ nav a.btn-default {
   padding: 0 25px;
   text-align: center;
   background-color: $color2;
-  color: white;
+  color: #000;
   text-shadow: 2px 2px black;
   @include transition(color 1.5s, transform 1.5s);
 }
 
 nav a.selected {
   text-decoration: none;
-  color: $color3;
+  color: #000;
 }
 
 nav a:hover{
@@ -137,10 +140,14 @@ nav a:hover{
   @include transform(rotate(1440deg));
 }
 
+.navbar-nav li a {
+  color: #000;
+}
+
 // Log in icon resize
 img.iconImg {
-  height: 30px;
-  width: 30px;
+  height: 45px;
+  width: 45px;
 }
 
 

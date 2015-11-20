@@ -1,5 +1,5 @@
 //factory for working with user's songs
-app.factory("songBase", ['$firebaseObject', '$firebaseArray', '$location', function($firebaseObject, $firebaseArray, $location) {
+app.factory("songBase", ['$firebaseObject', '$firebaseArray', '$route', function($firebaseObject, $firebaseArray, $route) {
 
 
 		//create a globally available 'songs' object
@@ -59,7 +59,8 @@ app.factory("songBase", ['$firebaseObject', '$firebaseArray', '$location', funct
       var index = songsArray.$indexFor(key);
       songsArray[index].rating = newRating;
       songsArray.$save(index);
-      $location.path( "#/song/list");
+      $route.reload();
+
 
 
     } //end rate song

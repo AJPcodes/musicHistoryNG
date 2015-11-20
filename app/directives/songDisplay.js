@@ -20,22 +20,22 @@ app.directive('songDisplayDir', ['songBase', function(songBase){
         }
       }
 
-      /*
-        Since the selectedSong in the `song-view` template
-        is bound directly to an object in the controller
-        that gets updated after an XHR, I have to watch that
-        variable for changes and then run the logic again
-        once it gets updated values.
-       */
 
-      scope.songsArray = songBase.getSongsArray;
-      scope.$watch(function(){
-        return songBase.reloadStars;
-      }, function(){
-        setStars();
-        console.log('reloading stars');
-        songBase.reloadStars = false;
-      });
+      //   Since the selectedSong in the `song-view` template
+      //   is bound directly to an object in the controller
+      //   that gets updated after an XHR, I have to watch that
+      //   variable for changes and then run the logic again
+      //   once it gets updated values.
+
+
+      // scope.songsArray = songBase.getSongsArray;
+      // scope.$watch(function(){
+      //   return songBase.reloadStars;
+      // }, function(){
+      //   setStars();
+      //   console.log('reloading stars');
+      //   songBase.reloadStars = false;
+      // });
 
       setStars();
     }

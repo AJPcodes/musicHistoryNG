@@ -6,16 +6,14 @@ app.controller('ShowSongsCtrl',['$rootScope', 'songBase', function($rootScope, s
 	//get songs as object and array from the factory
 	this.songsObject = songBase.getSongsObject();
 	this.songsArray = songBase.getSongsArray();
+	this.reloadStars = false;
 
 	this.rate = function(key, rating){
 
-		console.log('rate called with key', key);
-		console.log('rate called with rating', rating);
-
 		songBase.rateSong(key, rating);
-		songBase.reloadStars = true;
+		this.reloadStars = true;
 
-	};
+	}.bind(this);
 
 	this.genreFilter = function(){
 

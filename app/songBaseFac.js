@@ -59,7 +59,7 @@ app.factory("songBase", ['$firebaseObject', '$firebaseArray', '$route', function
       var index = songsArray.$indexFor(key);
       songsArray[index].rating = newRating;
       songsArray.$save(index);
-      $route.reload();
+      // $route.reload();
 
 
 

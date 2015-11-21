@@ -11,7 +11,6 @@ app.controller('ShowSongsCtrl',['$rootScope', 'songBase', function($rootScope, s
 	this.rate = function(key, rating){
 
 		songBase.rateSong(key, rating);
-		this.reloadStars = true;
 
 	}.bind(this);
 

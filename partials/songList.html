@@ -37,7 +37,7 @@
 
 		<div class="wrapper" id="addSongsHere">
 			<div class="song" ng-repeat="song in showSongsCtrl.songsArray | filter: showSongsCtrl.query | filter: showSongsCtrl.filterByGenres" value="{{song.title}}">
-				<div song-display-dir song="song" rate='showSongsCtrl.rate' reloadStars="reloadStars"></div>
+				<div song-display-dir song="song" rate='showSongsCtrl.rate'></div>
 			</div>
 		</div>
 	</div>

@@ -5,8 +5,7 @@ app.directive('songDisplayDir', ['songBase', function(songBase){
     scope:{
 
       selectedSong: "=song",
-      rate: "=rate",
-      reloadStars: "=reloadStars"
+      rate: "=rate"
 
     },
    	link: function(scope, elem, attrs) {
@@ -25,7 +24,7 @@ app.directive('songDisplayDir', ['songBase', function(songBase){
             value: i + 1,
             key: scope.selectedSong.key});
         }
-      }
+      };
 
       scope.setStars();
     }

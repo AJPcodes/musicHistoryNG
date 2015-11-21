@@ -24,5 +24,10 @@ app.controller("SingleSongCtrl",
     	$('.editInput').toggle('display');
     };
 
+    this.rate = function(key, rating){
+        console.log('called rate');
+        songBase.rateSong(key, rating);
+    }.bind(this);
+
   }]
 );

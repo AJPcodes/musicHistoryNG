@@ -1,7 +1,7 @@
-app.directive('songDisplayDir', ['songBase', function(songBase){
+app.directive('songStarsDir', ['songBase', function(songBase){
 	return {
 		restrict: 'A', //E for element or A for attribute
-		templateUrl: '../../partials/songDisplay.html',
+		templateUrl: '../../partials/songStars.html',
     scope:{
 
       selectedSong: "=song",

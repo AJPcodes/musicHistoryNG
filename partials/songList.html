@@ -37,7 +37,11 @@
 
 		<div class="wrapper" id="addSongsHere">
 			<div class="song" ng-repeat="song in showSongsCtrl.songsArray | filter: showSongsCtrl.query | filter: showSongsCtrl.filterByGenres" value="{{song.title}}">
-				<div song-display-dir song="song" rate='showSongsCtrl.rate'></div>
+				<a href="#/songs/{{ song.key }}">
+					<h3>{{ song.title }}</h3>
+					<p>{{ song.artist }} on {{ song.album }} - {{ song.genre }} </p>
+			</a>
+				<div song-stars-dir song="song" rate='showSongsCtrl.rate'></div>
 			</div>
 		</div>
 	</div>
